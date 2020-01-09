@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('testapi', 'ItemController@testApi')
+Route::get('testapi', 'ItemController@testApi');
