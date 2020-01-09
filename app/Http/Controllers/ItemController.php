@@ -44,9 +44,7 @@ class ItemController extends Controller
 
     public function testApi() {
 
-      return response()->json([
-        "message" => "OK"
-      ], 201);
+      return response("testApi", 200);
     }
      /**
      * Set order on the dashboard.
