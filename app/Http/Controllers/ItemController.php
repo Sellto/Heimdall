@@ -41,6 +41,13 @@ class ItemController extends Controller
         return view('welcome', $data);
     }
 
+
+    public function testApi() {
+
+      return response()->json([
+        "message" => "OK"
+      ], 201);
+    }
      /**
      * Set order on the dashboard.
      *
@@ -110,7 +117,7 @@ class ItemController extends Controller
         }
     }
 
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -181,7 +188,7 @@ class ItemController extends Controller
 
 
         //die(print_r($request->input('config')));
-        
+
         $item = Item::create($request->all());
 
         //Search::storeSearchProvider($request->input('class'), $item);
@@ -220,7 +227,7 @@ class ItemController extends Controller
         //$data['current_tags'] = $data['item']->parent;
         //die(print_r($data['current_tags']));
         // show the edit form and pass the nerd
-        return view('items.edit', $data);    
+        return view('items.edit', $data);
     }
 
     /**
@@ -243,7 +250,7 @@ class ItemController extends Controller
                 'icon' => $path
             ]);
         }
-        
+
         $config = Item::checkConfig($request->input('config'));
         $current_user = User::currentUser();
         $request->merge([
@@ -289,7 +296,7 @@ class ItemController extends Controller
         }
 
         $route = route('items.index', []);
-        return redirect($route)       
+        return redirect($route)
             ->with('success',__('app.alert.success.item_deleted'));
     }
 
@@ -304,8 +311,8 @@ class ItemController extends Controller
         //
         Item::withTrashed()
                 ->where('id', $id)
-                ->restore();      
-        
+                ->restore();
+
         $route = route('items.index', []);
         return redirect($route)
             ->with('success',__('app.alert.success.item_restored'));
@@ -339,7 +346,7 @@ class ItemController extends Controller
         } else {
             $output['config'] = null;
         }
-        
+
         return json_encode($output);
     }
 
@@ -347,7 +354,7 @@ class ItemController extends Controller
     {
         $data = $request->input('data');
         //$url = $data[array_search('url', array_column($data, 'name'))]['value'];
-        
+
         $app = $data['type'];
 
         $app_details = new $app();
@@ -365,7 +372,7 @@ class ItemController extends Controller
             $application->config = $config;
             echo $application->livestats();
         }
-        
+
     }
 
 
@@ -378,8 +385,8 @@ class ItemController extends Controller
 
     }
 
-    
-    
 
-    
+
+
+
 }
